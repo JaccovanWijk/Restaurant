@@ -1,5 +1,10 @@
 package com.example.jacco.restaurant;
 
+/**
+ * Created by Jacco on 7-5-2018.
+ * begin screen 
+ */
+
 import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;

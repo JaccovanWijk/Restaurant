@@ -23,12 +23,15 @@ public class MenuActivity extends AppCompatActivity implements MenuRequest.Callb
 
         Intent intent = getIntent();
         category = (String) intent.getSerializableExtra("clicked_entry");
+
+        MenuRequest request = new MenuRequest(this);
+        request.getMenu(this, category);
     }
 
     @Override
-    public void gotMenu(ArrayList<MenuItem> menuItems) {
+    public void gotMenu(ArrayList<com.example.jacco.restaurant.MenuItem> menuItems) {
 
-        ArrayAdapter<String> adapter = new MenuAdapter(this, menuItems);
+        ArrayAdapter<com.example.jacco.restaurant.MenuItem> adapter = new MenuAdapter(this, menuItems);
 
         ListView listview = findViewById(R.id.listview);
         listview.setAdapter(adapter);
@@ -48,10 +51,10 @@ public class MenuActivity extends AppCompatActivity implements MenuRequest.Callb
     private class ListClickListener implements AdapterView.OnItemClickListener {
         @Override
         public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-            String category = (String) adapterView.getItemAtPosition(i);
+            com.example.jacco.restaurant.MenuItem dish = (com.example.jacco.restaurant.MenuItem) adapterView.getItemAtPosition(i);
 
-            Intent intent = new Intent(MenuActivity.this, CategoriesActivity.class);
-            intent.putExtra("clicked_entry", category);
+            Intent intent = new Intent(MenuActivity.this, MenuItemActivity.class);
+            intent.putExtra("clicked_dish", dish);
             startActivity(intent);
         }
     }
